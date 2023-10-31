@@ -1,6 +1,9 @@
 {% extends 'products/base.html' %}
 {% load static %}
 
+{% block css %}
+<link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -197,11 +200,9 @@
 {% endblock %}
 
 {% block footer %}
-<!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Store 2022</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Store {{year}}</p>
     </div>
-    <!-- /.container -->
 </footer>
 {% endblock %}
