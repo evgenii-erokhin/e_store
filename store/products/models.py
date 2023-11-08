@@ -28,7 +28,7 @@ class Product(models.Model):
     )
     image = models.ImageField(
         'Изображение товара',
-        upload_to='media/images',
+        upload_to='images',
     )
     description = models.TextField(
         'Описание товара',
