@@ -5,9 +5,12 @@ class ProductCategory(models.Model):
     name = models.CharField(
         'Название категории',
         max_length=256,
+        unique=True,
     )
     description = models.TextField(
         'Описание категории',
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -25,20 +28,19 @@ class Product(models.Model):
     )
     image = models.ImageField(
         'Изображение товара',
-        upload_to='media/images',
+        upload_to='images',
     )
     description = models.TextField(
         'Описание товара',
     )
-    short_description = models.CharField(
-        'Краткое описание товара',
-        max_length=64,
-    )
-    price = models.PositiveIntegerField(
-        'Стоимомть товара'
+    price = models.DecimalField(
+        'Стоимомть товара',
+        max_digits=6,
+        decimal_places=2
     )
     quantity = models.PositiveIntegerField(
-        'Количество товара на складе'
+        'Количество товара на складе',
+        default=0,
     )
     category = models.ForeignKey(
         ProductCategory,
