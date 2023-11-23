@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import  User
+
 
 class ProductCategory(models.Model):
     name = models.CharField(
@@ -44,7 +46,8 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         ProductCategory,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name='Категория товара'
     )
 
     class Meta:
@@ -53,3 +56,31 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Basket(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        verbose_name='Пользователь'
+    )
+    products = models.ForeignKey(
+        to=Product,
+        on_delete=models.CASCADE,
+        verbose_name='Продукт'
+    )
+    quantity = models.PositiveIntegerField(
+        'Количество товара',
+        default=0,
+    )
+    created_timestamp = models.DateTimeField(
+        'Время создания',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Корзина товаров'
+        verbose_name_plural = 'Корзина товаров'
+
+    def __str__(self):
+        return f'В корзине {self.quantity} товаров'
