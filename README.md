@@ -1,12 +1,21 @@
-# Интернет магазин одежды
-__Yatube__ это социальная сеть, где пользователи могут публиковать свои посты, оставлять комментарии к постам других пользователей, а также подписываться на других авторов.
-Посты могут быть привязаны к тематической группе, на которую также можно подписаться.
+# Интернет магазин одежды.
+Это учебный проект интернет магазина в котором реализовано слкдующие:    
+Для покупателя:
++ регистрация в интернет магазине
++ выбор товара и добавление в карзину
++ оплата покупок удобным способом
 
-Задеплоенный проект можно посмотреть [здесь](https://evgeniy.pythonanywhere.com/)
+Для сотрудника магазина:   
++ добавления новго товара через админ панель
++ 
+
+Попробовал использовать планировщик асинхроных задач Celery
  ## Технологии
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Celery](https://img.shields.io/badge/celery-%23a9cc54.svg?style=for-the-badge&logo=celery&logoColor=ddf4a4)
  ## Как запустить проект:
 
 1. Клонировать репозиторий и перейти в него в командной строке:
