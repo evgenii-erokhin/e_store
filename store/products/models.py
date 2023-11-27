@@ -1,6 +1,6 @@
 from django.db import models
 
-from users.models import  User
+from users.models import User
 
 
 class ProductCategory(models.Model):
@@ -58,6 +58,15 @@ class Product(models.Model):
         return self.name
 
 
+class BasketQuerySet(models.QuerySet):
+    def total_sum(self):
+
+        return sum(basket.sum() for basket in self)
+
+    def total_quantity(self):
+        return sum(basket.quantity for basket in self)
+
+
 class Basket(models.Model):
     user = models.ForeignKey(
         to=User,
@@ -78,9 +87,14 @@ class Basket(models.Model):
         auto_now_add=True
     )
 
+    objects = BasketQuerySet.as_manager()
+
     class Meta:
         verbose_name = 'Корзина товаров'
         verbose_name_plural = 'Корзина товаров'
 
     def __str__(self):
         return f'В корзине {self.quantity} товаров'
+
+    def sum(self):
+        return self.products.price * self.quantity
