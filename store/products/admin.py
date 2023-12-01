@@ -2,10 +2,11 @@ from django.contrib import admin
 from products.models import Product, ProductCategory
 
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'short_description',
+        'description',
         'price',
         'quantity',
         'category',
@@ -20,15 +21,12 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(ProductCategory)
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'description',
     )
     list_filter = (
-        'name'
+        'name',
     )
-
-
-admin.site.register(Product)
-admin.site.register(ProductCategory)
