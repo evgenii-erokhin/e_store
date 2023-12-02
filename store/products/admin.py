@@ -1,15 +1,22 @@
 from django.contrib import admin
-from products.models import Product, ProductCategory
+from products.models import Basket, Product, ProductCategory
 
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'short_description',
         'price',
         'quantity',
         'category',
     )
+    fields = (
+        'name',
+        'description',
+        ('price',
+         'quantity'),
+        'category',
+        )
     search_fields = (
         'name',
     )
@@ -18,17 +25,23 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'category',
     )
+    ordering = ('-name',)
 
 
+@admin.register(ProductCategory)
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'description',
     )
     list_filter = (
-        'name'
+        'name',
     )
 
 
-admin.site.register(Product)
-admin.site.register(ProductCategory)
+class BasketAdmin(admin.TabularInline):
+    model = Basket
+    fields = (
+        'products',
+        'quantity',
+    )
