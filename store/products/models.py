@@ -45,7 +45,7 @@ class Product(models.Model):
         default=0,
     )
     category = models.ForeignKey(
-        ProductCategory,
+        to=ProductCategory,
         on_delete=models.CASCADE,
         verbose_name='Категория товара'
     )
