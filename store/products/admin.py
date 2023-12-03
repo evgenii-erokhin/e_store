@@ -45,3 +45,7 @@ class BasketAdmin(admin.TabularInline):
         'products',
         'quantity',
     )
+    readonly_fields = (
+        'created_timestamp',
+    )
+    extra = 0
