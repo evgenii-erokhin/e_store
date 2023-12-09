@@ -1,13 +1,14 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.generic.base import TemplateView
 
 from products.models import Product, ProductCategory, Basket
 from store.settings import PER_PAGE
 
 
-def index(request):
-    return render(request, 'products/index.html')
+class IndexView(TemplateView):
+    template_name = 'products/index.html'
 
 
 def products(request, category_id=None, page=1):
