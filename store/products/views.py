@@ -8,11 +8,7 @@ from store.settings import PER_PAGE
 
 
 class IndexView(TemplateView):
-    pass
-
-
-def index(request):
-    return render(request, 'products/index.html')
+    template_name = 'products/index.html'
 
 
 def products(request, category_id=None, page=1):
