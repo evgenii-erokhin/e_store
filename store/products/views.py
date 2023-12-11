@@ -20,19 +20,19 @@ class IndexView(TemplateView):
 class ProductsListView(ListView):
     model = Product
     template_name = 'products/products.html'
+    paginate_by = 3
 
+    def get_queryset(self):
+        queryset = super(ProductsListView, self).get_queryset()
+        category_id = self.kwargs.get('category_id')
+        return (queryset.filter(category_id=category_id) if category_id
+                else queryset)
 
-# def products(request, category_id=None, page=1):
-#     products = (Product.objects.filter(category_id=category_id) if category_id
-#                 else Product.objects.all())
-#     paginator = Paginator(products, PER_PAGE)
-#     products_paginator = paginator.page(page)
-
-#     context = {
-#         'categories': ProductCategory.objects.all(),
-#         'products': products_paginator
-#     }
-#     return render(request, 'products/products.html', context)
+    def get_context_data(self, **kwargs):
+        context = super(ProductsListView, self).get_context_data()
+        context['title'] = 'Store - Каталог'
+        context['categories'] = ProductCategory.objects.all()
+        return context
 
 
 @login_required
