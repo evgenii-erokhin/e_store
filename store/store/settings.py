@@ -135,6 +135,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # custom user model
 AUTH_USER_MODEL = 'users.User'
-
-# num of goods per page
-PER_PAGE = 3
