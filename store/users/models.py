@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractUser
 
 
@@ -14,6 +14,11 @@ class User(AbstractUser):
         'Подтвердил ли пользователь свой email',
         default=False
     )
+    email = models.EmailField(
+        'Адресс электронной почты',
+        unique=True,
+        blank=False
+        )
 
 
 class EmailVerification(models.Model):
@@ -40,3 +45,12 @@ class EmailVerification(models.Model):
 
     def __str__(self):
         return f'Email verification object for {self.user.username}'
+
+    def send_verification_mail(self):
+        send_mail(
+            "Subject here",
+            "Here is the message.",
+            "from@example.com",
+            [self.user.email],
+            fail_silently=False,
+        )
