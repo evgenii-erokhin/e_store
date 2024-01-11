@@ -1,6 +1,8 @@
 from django.db import models
-
+from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
+from django.conf import settings
 
 
 class User(AbstractUser):
@@ -14,6 +16,11 @@ class User(AbstractUser):
         'Подтвердил ли пользователь свой email',
         default=False
     )
+    email = models.EmailField(
+        'Адресс электронной почты',
+        unique=True,
+        blank=False
+        )
 
 
 class EmailVerification(models.Model):
@@ -40,3 +47,22 @@ class EmailVerification(models.Model):
 
     def __str__(self):
         return f'Email verification object for {self.user.username}'
+
+    def send_verification_mail(self):
+        link = reverse('users:email_verifications', kwargs={
+            'email': self.user.email,
+            'code': self.code
+            })
+        verification_link = f'{settings.DOMAIN_NAME}{link}'
+        subject = f'Подтверждение учётной записи для {self.user.username}'
+        message = 'Для подтвержения учётной записи {} пройдите по ссылке: {}'.format(
+            self.user.email,
+            verification_link
+        )
+        send_mail(
+            subject,
+            message,
+            "from@example.com",
+            [self.user.email],
+            fail_silently=False,
+        )
