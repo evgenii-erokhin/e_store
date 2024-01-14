@@ -58,13 +58,13 @@ class EmailVerificationView(TitleMixin, TemplateView):
             user=user,
             code=code
             )
-        if email_verifications.exists() and not email_verifications.first().is_e:
+        if email_verifications.exists() and not email_verifications.first():
             user.is_verified_email = True
             user.save()
             return super(EmailVerificationView, self).get(
                 request, *args, **kwargs)
         else:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('products:index'))
 
     def is_expired(self):
         return now() >= self.expiration
