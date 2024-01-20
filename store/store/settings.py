@@ -146,14 +146,9 @@ LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Sendeong emails
-# EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
-# EMAIL_PORT = os.getenv('EMAIL_PORT')
-# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_SSL = (os.getenv('EMAIL_USE_SSL', 'False') == 'True')
-EMAIL_BACKEND = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'maverik.green@yandex.ru'
-EMAIL_HOST_PASSWORD = 'zaibsddhsbirzjyn'
-EMAIL_USE_SSL = True
+# Sending emails
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = (os.getenv('EMAIL_USE_SSL', 'False') == 'True')
