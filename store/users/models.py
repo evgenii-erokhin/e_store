@@ -60,9 +60,9 @@ class EmailVerification(models.Model):
             verification_link
         )
         send_mail(
-            subject,
-            message,
-            "from@example.com",
-            [self.user.email],
+            subject=subject,
+            message=message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[self.user.email],
             fail_silently=False,
         )
