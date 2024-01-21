@@ -37,7 +37,21 @@
   ```
   cd e_store
   ```
-2. Cоздать и активировать виртуальное окружение:
+2. В корне проекта создать файл .env по следуюзему образцу:
+   ```
+   NAME=store_db
+   USER=stor_username
+   PASSWORD=passw0rd1
+   HOST=localhost
+   PORT=5432
+   
+   EMAIL_BACKEND=smtp.yandex.ru
+   EMAIL_PORT=465
+   EMAIL_HOST_USER=your_email
+   EMAIL_HOST_PASSWORD=password_of_your_app
+   EMAIL_USE_SSL=True
+   ```
+3. Cоздать и активировать виртуальное окружение:
 
 * Если у вас **Windows**:
 ```
@@ -53,11 +67,11 @@ python3 -m venv venv
 ```
 source venv/bib/activate
 ```
-3. Установоить зависимости:
+4. Установоить зависимости:
 ```
 pip install -r requirements.txt
 ```
-4. Перейти в дерикторию `yatube` выполнить миграции и создать супер-пользователя:
+5. Перейти в дерикторию `yatube` выполнить миграции и создать супер-пользователя:
 ```
 cd store
 ```
@@ -70,7 +84,7 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
-5. Запустить сервер разработки:
+6. Запустить сервер разработки:
 ```
 python manage.py runserver
 ```
